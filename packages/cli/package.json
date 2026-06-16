@@ -1,22 +1,20 @@
 {
-  "name": "create-p5kit",
+  "name": "p5kit",
   "version": "0.0.0",
-  "description": "Create a p5kit app.",
+  "description": "CLI for turning p5.js sketches into mobile app bundles.",
   "bin": {
-    "create-p5kit": "./bin/create-p5kit.js"
+    "p5kit": "./bin/p5kit.js"
   },
   "files": [
     "bin",
+    "src",
     "README.md"
   ],
-  "dependencies": {
-    "@p5kit/templates": "0.0.0"
-  },
   "homepage": "https://github.com/jinsxk/p5kit#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jinsxk/p5kit.git",
-    "directory": "packages/create-p5kit"
+    "directory": "packages/cli"
   },
   "bugs": {
     "url": "https://github.com/jinsxk/p5kit/issues"
@@ -26,8 +24,9 @@
     "p5js",
     "p5.js",
     "ios",
+    "android",
     "creative-coding",
-    "create"
+    "cli"
   ],
   "license": "MIT",
   "engines": {

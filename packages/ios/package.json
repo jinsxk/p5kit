@@ -1,0 +1,26 @@
+{
+  "name": "@p5kit/ios",
+  "version": "0.0.0",
+  "description": "iOS WKWebView shell components for p5kit.",
+  "files": [
+    "Package.swift",
+    "Sources"
+  ],
+  "homepage": "https://github.com/jinsxk/p5kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinsxk/p5kit.git",
+    "directory": "packages/ios"
+  },
+  "bugs": {
+    "url": "https://github.com/jinsxk/p5kit/issues"
+  },
+  "keywords": [
+    "p5",
+    "p5js",
+    "ios",
+    "swiftui",
+    "wkwebview"
+  ],
+  "license": "MIT"
+}

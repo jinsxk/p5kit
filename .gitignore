@@ -1,0 +1,5 @@
+node_modules/
+.tmp/
+dist/
+.p5kit/
+.DS_Store

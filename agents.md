@@ -1,5 +1,37 @@
 # Agents Instructions
 
+## 产品目标与实现边界
+
+p5kit 的后续目标是让用户通过 npm 工作流搭建好把 p5.js sketch 构建成 iOS / Android app 所需的基础工作。
+
+目标用户路径应优先围绕这些命令成立：
+
+```sh
+npm create p5kit my-sketch
+cd my-sketch
+
+p5kit run ios
+p5kit run android
+
+p5kit build ios
+p5kit build android
+```
+
+这意味着 `create-p5kit` / `p5kit` npm 包后续应负责生成、同步或驱动以下基础设施：
+
+- p5.js sketch 的 web 模板和 web bundle；
+- iOS `WKWebView` 原生壳、必要配置、资源嵌入和构建命令；
+- Android `WebView` 原生壳、必要配置、资源嵌入和构建命令；
+- JavaScript 到 native 的 bridge 协议与小型统一 API；
+- 适合创意编程的移动端默认处理，例如 canvas 尺寸、touch、safe area、权限、音频和资源路径。
+
+重要边界：
+
+- 不要把项目实现成“只提供一个 JS runtime helper，原生工程让用户自己从零搭”。
+- 也不要把项目泛化成完整 Capacitor / Cordova 替代品；优先服务 p5.js sketch 到移动 app 的创意编程工作流。
+- “引入 npm 包”在这里指 npm create / 安装 CLI / 使用模板和命令初始化项目，不是单纯在业务代码里 `import` 一个包就完成原生构建。
+- 当前阶段可以先提供可验证的骨架和 handoff 点，不要求一次做完完整 iOS、Android、签名和商店发布流程。
+
 ## Git 提交规范
 
 默认使用“英文类型/作用域 + 中文摘要”的 commit 标题格式：

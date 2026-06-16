@@ -1,0 +1,21 @@
+{
+  "name": "__PROJECT_NAME__",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "p5kit dev",
+    "build": "p5kit build web",
+    "build:ios": "p5kit build ios",
+    "build:android": "p5kit build android"
+  },
+  "dependencies": {
+    "@p5kit/bridge": "__P5KIT_BRIDGE_SPEC__",
+    "@p5kit/core": "__P5KIT_CORE_SPEC__",
+    "p5": "^2.3.0"
+  },
+  "devDependencies": {
+    "p5kit": "__P5KIT_CLI_SPEC__",
+    "vite": "^8.0.16"
+  }
+}

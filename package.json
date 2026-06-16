@@ -1,14 +1,19 @@
 {
-  "name": "p5kit",
+  "name": "p5kit-monorepo",
   "version": "0.0.0",
+  "private": true,
   "description": "Toolkit for turning p5.js sketches into iOS apps.",
+  "workspaces": [
+    "packages/*"
+  ],
   "bin": {
     "p5kit": "./bin/p5kit.js"
   },
-  "files": [
-    "bin",
-    "README.md"
-  ],
+  "scripts": {
+    "build": "npm --workspaces --if-present run build",
+    "smoke": "node scripts/smoke-test.mjs",
+    "test": "npm run smoke"
+  },
   "homepage": "https://github.com/jinsxk/p5kit#readme",
   "repository": {
     "type": "git",
@@ -21,6 +26,7 @@
     "p5",
     "p5js",
     "p5.js",
+    "android",
     "ios",
     "creative-coding",
     "app"
