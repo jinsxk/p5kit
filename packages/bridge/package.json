@@ -1,8 +1,9 @@
 {
   "name": "@p5kit/bridge",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared JavaScript-to-native bridge protocol for p5kit.",
   "type": "module",
+  "main": "./src/index.js",
   "exports": {
     ".": "./src/index.js"
   },

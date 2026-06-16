@@ -1,6 +1,6 @@
 {
   "name": "@p5kit/ios",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "iOS WKWebView shell components for p5kit.",
   "files": [
     "Package.swift",
