@@ -1,0 +1,30 @@
+{
+  "name": "create-p5kit",
+  "version": "0.0.0",
+  "description": "Create a p5kit app.",
+  "bin": {
+    "create-p5kit": "./bin/create-p5kit.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "homepage": "https://github.com/jinsxk/p5kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinsxk/p5kit.git",
+    "directory": "packages/create-p5kit"
+  },
+  "bugs": {
+    "url": "https://github.com/jinsxk/p5kit/issues"
+  },
+  "keywords": [
+    "p5",
+    "p5js",
+    "p5.js",
+    "ios",
+    "creative-coding",
+    "create"
+  ],
+  "license": "MIT"
+}

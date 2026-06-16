@@ -1,0 +1,29 @@
+{
+  "name": "p5kit",
+  "version": "0.0.0",
+  "description": "Toolkit for turning p5.js sketches into iOS apps.",
+  "bin": {
+    "p5kit": "./bin/p5kit.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "homepage": "https://github.com/jinsxk/p5kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinsxk/p5kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinsxk/p5kit/issues"
+  },
+  "keywords": [
+    "p5",
+    "p5js",
+    "p5.js",
+    "ios",
+    "creative-coding",
+    "app"
+  ],
+  "license": "MIT"
+}
