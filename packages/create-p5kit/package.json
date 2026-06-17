@@ -7,11 +7,9 @@
   },
   "files": [
     "bin",
-    "README.md"
+    "README.md",
+    "templates"
   ],
-  "dependencies": {
-    "@p5kit/templates": "^0.1.0"
-  },
   "homepage": "https://github.com/jinsxk/p5kit#readme",
   "repository": {
     "type": "git",

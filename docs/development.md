@@ -33,10 +33,9 @@ npm run build:ios
 
 - `create-p5kit`: project scaffolder used by `npm create p5kit`
 - `@p5kit/cli`: CLI package that exposes the `p5kit` command
-- `@p5kit/core`: runtime helpers, lifecycle conventions, and platform detection
-- `@p5kit/bridge`: shared JavaScript-to-native bridge protocol
-- `@p5kit/templates`: starter projects and examples
-- `@p5kit/ios`: Swift/SwiftUI app shell using `WKWebView`
+- `@p5kit/core`: runtime helpers, lifecycle conventions, platform detection, and JavaScript-to-native bridge internals
+
+Starter templates live in `packages/create-p5kit/templates`. Native shell resources live under `packages/cli/native` until they are wired into generated mobile app projects.
 - Android shell: planned Kotlin app shell using Android `WebView`
 
 Do not publish an Android package until the Android shell exists.
@@ -72,6 +71,8 @@ Initial native bridge targets include:
 - vibration
 - sharing
 - saving canvas output
+- Apple Pencil pressure, tilt, azimuth, and feature-detected Pencil Pro extras such as squeeze, barrel roll, hover, and haptics
+- gesture streams for pinch, rotate, pan, tap, and long press
 - device orientation
 - motion and sensor data
 - camera and media permissions
@@ -87,9 +88,35 @@ The goal is not just to put a web page in a WebView. The goal is to make p5.js s
 ## Roadmap
 
 1. Create a minimal p5.js project template. Done for the basic web template.
-2. Build an iOS shell with SwiftUI and `WKWebView`. In progress as a Swift Package component.
-3. Build an Android shell with Kotlin and `WebView`.
-4. Add `p5kit run ios` and `p5kit run android`. Partially stubbed through native bundle preparation.
-5. Add production builds for both platforms.
-6. Define the first version of the native bridge API. Started with platform and vibration support.
-7. Publish example sketches that use touch, sensors, audio, and sharing.
+2. Build an iOS shell with SwiftUI and `WKWebView`, owned by the CLI native resources. In progress with reusable Swift sources under `packages/cli/native/ios`.
+3. Add `p5kit run ios` so the quickstart can build the web bundle, generate or sync the iOS app shell, open Simulator, and launch a real app.
+4. Build an Android shell with Kotlin and `WebView`.
+5. Add `p5kit run android` after the Android shell can build and launch a real app.
+6. Add production builds for both platforms.
+7. Define the first version of the native bridge API. Started with platform and vibration support.
+8. Add a native event stream API for long-running inputs instead of only request/response bridge calls.
+9. Map Apple Pencil input on iOS:
+   - pressure from `UITouch.force / maximumPossibleForce`
+   - tilt and direction from `altitudeAngle` and `azimuthAngle`
+   - feature-detected Apple Pencil Pro extras such as squeeze, barrel roll, hover, and haptics
+10. Map common creative-coding gestures:
+   - pinch scale and velocity
+   - rotation angle and velocity
+   - pan translation and velocity
+   - tap, double tap, long press, and pointer phase
+11. Map Core Motion data:
+   - device attitude
+   - gyroscope rotation rate
+   - accelerometer and user acceleration
+   - gravity vector
+   - configurable sampling rate and explicit start/stop lifecycle
+12. Add `p5kit.capabilities()` so sketches can feature-detect Pencil, gesture, motion, haptics, camera, microphone, and file/share support.
+13. Add creative-coding defaults and utilities worth doing after the first app loop:
+   - haptic feedback helpers
+   - safe-area and fullscreen helpers
+   - orientation lock/read APIs
+   - keep-awake mode for installations and performances
+   - asset path helpers
+   - file pick/save/share helpers
+   - camera and microphone permissions once the app shell and privacy flow are stable
+14. Publish example sketches that use touch, Pencil, gestures, sensors, audio, saving, and sharing.

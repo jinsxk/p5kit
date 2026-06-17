@@ -10,7 +10,6 @@
     "build:android": "p5kit build android"
   },
   "dependencies": {
-    "@p5kit/bridge": "__P5KIT_BRIDGE_SPEC__",
     "@p5kit/core": "__P5KIT_CORE_SPEC__",
     "p5": "^2.3.0"
   },

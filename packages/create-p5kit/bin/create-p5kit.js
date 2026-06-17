@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const PACKAGE_JSON = require("../package.json");
+const PACKAGE_ROOT = path.resolve(__dirname, "..");
 const REPO_ROOT = path.resolve(__dirname, "../../..");
 
 main(process.argv.slice(2)).catch((error) => {
@@ -117,21 +118,12 @@ function resolveTemplateDir(template) {
     throw new Error(`Unknown template: ${template}`);
   }
 
-  const localTemplateDir = path.join(REPO_ROOT, "packages", "templates", "templates", template);
-
-  if (fs.existsSync(localTemplateDir)) {
-    return localTemplateDir;
-  }
-
-  const packageJsonPath = require.resolve("@p5kit/templates/package.json");
-  const packageRoot = path.dirname(packageJsonPath);
-  return path.join(packageRoot, "templates", template);
+  return path.join(PACKAGE_ROOT, "templates", template);
 }
 
 function createReplacements(targetDir, projectName) {
   return {
     __PROJECT_NAME__: projectName,
-    __P5KIT_BRIDGE_SPEC__: packageSpec(targetDir, "@p5kit/bridge", "packages/bridge"),
     __P5KIT_CORE_SPEC__: packageSpec(targetDir, "@p5kit/core", "packages/core"),
     __P5KIT_CLI_SPEC__: packageSpec(targetDir, "@p5kit/cli", "packages/cli"),
   };

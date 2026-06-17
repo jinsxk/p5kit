@@ -14,7 +14,17 @@ function run() {
   fs.rmSync(appDir, { recursive: true, force: true });
   fs.mkdirSync(tmpRoot, { recursive: true });
 
+  assertPublicPackageSurface();
+
   exec(process.execPath, [path.join(root, "packages/create-p5kit/bin/create-p5kit.js"), appDir], root);
+
+  const generatedPackageJson = readJson(path.join(appDir, "package.json"));
+  assertDependency(generatedPackageJson.dependencies, "@p5kit/core");
+  assertDependency(generatedPackageJson.dependencies, "p5");
+  assertDependency(generatedPackageJson.devDependencies, "@p5kit/cli");
+  assertDependency(generatedPackageJson.devDependencies, "vite");
+  assertMissingDependency(generatedPackageJson.dependencies, "@p5kit/bridge");
+
   exec("npm", ["install"], appDir);
   exec("npm", ["run", "build"], appDir);
   exec("npm", ["run", "build:ios"], appDir);
@@ -44,5 +54,46 @@ function exec(command, args, cwd) {
 function assertFile(filePath) {
   if (!fs.existsSync(filePath)) {
     throw new Error(`Expected file to exist: ${filePath}`);
+  }
+}
+
+function assertMissing(filePath) {
+  if (fs.existsSync(filePath)) {
+    throw new Error(`Expected file to be removed: ${filePath}`);
+  }
+}
+
+function assertPublicPackageSurface() {
+  const packagesDir = path.join(root, "packages");
+  const packageNames = fs
+    .readdirSync(packagesDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .filter((entry) => fs.existsSync(path.join(packagesDir, entry.name, "package.json")))
+    .map((entry) => entry.name)
+    .sort();
+  const expected = ["cli", "core", "create-p5kit"];
+
+  if (JSON.stringify(packageNames) !== JSON.stringify(expected)) {
+    throw new Error(`Expected public packages ${expected.join(", ")}, found ${packageNames.join(", ")}`);
+  }
+
+  assertMissing(path.join(packagesDir, "bridge", "package.json"));
+  assertMissing(path.join(packagesDir, "templates", "package.json"));
+  assertMissing(path.join(packagesDir, "ios", "package.json"));
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function assertDependency(dependencies, name) {
+  if (!dependencies || !Object.hasOwn(dependencies, name)) {
+    throw new Error(`Expected generated package.json to depend on ${name}`);
+  }
+}
+
+function assertMissingDependency(dependencies, name) {
+  if (dependencies && Object.hasOwn(dependencies, name)) {
+    throw new Error(`Expected generated package.json not to depend on ${name}`);
   }
 }

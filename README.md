@@ -94,10 +94,9 @@ It does not yet:
 
 - `create-p5kit`: the scaffolder used by `npm create p5kit`
 - `@p5kit/cli`: the package that provides the `p5kit` command
-- `@p5kit/core`: browser runtime helpers, lifecycle conventions, and platform detection
-- `@p5kit/bridge`: the shared JavaScript-to-native bridge protocol
-- `@p5kit/templates`: starter projects and examples
-- `@p5kit/ios`: the current Swift Package for the iOS `WKWebView` shell
+- `@p5kit/core`: browser runtime helpers, lifecycle conventions, platform detection, and JavaScript-to-native bridge internals
+
+Starter templates and native shell resources are owned by the scaffolder and CLI. They are not separate packages users need to install.
 
 ## Why p5kit
 

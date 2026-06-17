@@ -94,10 +94,9 @@ p5kit 目前是早期预览版。
 
 - `create-p5kit`：`npm create p5kit` 使用的脚手架
 - `@p5kit/cli`：提供 `p5kit` 命令的 CLI 包
-- `@p5kit/core`：浏览器 runtime helper、生命周期约定和平台检测
-- `@p5kit/bridge`：共享的 JavaScript 到原生端 bridge 协议
-- `@p5kit/templates`：起步项目和示例
-- `@p5kit/ios`：当前 iOS `WKWebView` 壳的 Swift Package
+- `@p5kit/core`：浏览器 runtime helper、生命周期约定、平台检测和 JavaScript 到原生端 bridge 内部实现
+
+起步模板和原生壳资源由脚手架与 CLI 内部持有，不作为用户需要单独安装的包。
 
 ## 为什么需要 p5kit
 

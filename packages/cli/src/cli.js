@@ -45,7 +45,7 @@ async function build(args) {
     await runVite(["build", ...target.rest]);
     prepareNativeBundle("ios");
     console.log("Prepared iOS web bundle in .p5kit/ios/Web.");
-    console.log("The native iOS app shell is available in the @p5kit/ios package.");
+    console.log("The native iOS shell resources are bundled with @p5kit/cli.");
     return;
   }
 
@@ -70,7 +70,7 @@ async function run(args) {
 
   if (target.name === "ios") {
     await build(["ios", ...target.rest]);
-    console.log("Run this bundle from an iOS shell that embeds @p5kit/ios.");
+    console.log("iOS app launching is not implemented yet.");
     return;
   }
 
